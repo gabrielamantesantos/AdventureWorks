@@ -1,0 +1,445 @@
+version: 2
+
+sources:
+  - name: adventure_works
+    tables:
+      - name: department
+        columns:
+          - name: departmentid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: shift
+        columns:
+          - name: shiftid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: employeedepartmenthistory
+        columns:
+          - name: departmentid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+          - name: businessentityid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+          - name: startdate
+            description: "The primary key for this table"
+            tests:
+                - not_null
+          - name: shiftid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: jobcandidate
+        columns:
+          - name: jobcandidateid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+          - name: businessentityid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: employeepayhistory
+        columns:
+          - name: businessentityid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+          - name: ratechangedate
+            description: "The primary key for this table"
+            tests:
+                - not_null
+      - name: employee
+        columns:
+          - name: businessentityid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: address
+        columns:
+          - name: addressid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: addresstype
+        columns:
+          - name: addresstypeid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: businessentity
+        columns:
+          - name: businessentityid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: businessentityaddress
+        columns:
+          - name: businessentityid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+          - name: addressid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+          - name: addresstypeid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: businessentitycontact
+        columns:
+          - name: businessentityid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+          - name: contacttypeid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+          - name: personid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: contacttype
+        columns:
+          - name: contacttypeid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: countryregion
+        columns:
+          - name: countryregioncode
+            description: "The primary key for this table"
+            tests:
+                - not_null
+      - name: emailaddress
+        columns:
+          - name: emailaddressid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+          - name: businessentityid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: password
+        columns:
+          - name: businessentityid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: person
+        columns:
+          - name: businessentityid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: personphone
+        columns:
+          - name: businessentityid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+          - name: phonenumbertypeid
+            description: "The primary key for this table"
+            tests:
+                - not_null
+          - name: phonenumber
+            description: "The primary key for this table"
+            tests:
+                - not_null
+      - name: phonenumbertype
+        columns:
+          - name: phonenumbertypeid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: stateprovince
+        columns:
+          - name: stateprovinceid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: billofmaterials
+        columns:
+          - name: billofmaterialsid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: culture
+        columns:
+          - name: cultureid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: document
+        columns:
+          - name: documentnode
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: illustration
+        columns:
+          - name: illustrationid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: location
+        columns:
+          - name: locationid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: product
+        columns:
+          - name: productid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: productcategory
+        columns:
+          - name: productcategoryid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: productcosthistory
+        columns:
+          - name: productid
+            description: "The primary key for this table"
+            tests:
+                - not_null
+          - name: startdate
+            description: "The primary key for this table"
+            tests:
+                - not_null
+      - name: productdescription
+        columns:
+          - name: productdescriptionid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: productdocument
+        columns:
+          - name: productid
+            description: "The primary key for this table"
+            tests:
+                - not_null
+          - name: documentnode
+            description: "The primary key for this table"
+            tests:
+                - not_null
+      - name: productinventory
+        columns:
+          - name: productid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+          - name: locationid
+            description: "The primary key for this table"
+            tests:
+                - not_null
+      - name: productlistpricehistory
+        columns:
+          - name: productid
+            description: "The primary key for this table"
+            tests:
+                - not_null
+          - name: locationid
+            description: "The primary key for this table"
+            tests:
+                - not_null
+      - name: productmodel
+        columns:
+          - name: productmodelid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: productmodelillustration
+        columns:
+          - name: productmodelid
+            description: "The primary key for this table"
+            tests:
+                - not_null
+          - name: illustrationid
+            description: "The primary key for this table"
+            tests:
+                - not_null
+      - name: productmodelproductdescriptionculture
+        columns:
+          - name: productmodelid
+            description: "The primary key for this table"
+            tests:
+                - not_null
+          - name: productdescriptionid
+            description: "The primary key for this table"
+            tests:
+                - not_null
+          - name: cultureid
+            description: "The primary key for this table"
+            tests:
+                - not_null
+      - name: productphoto
+        columns:
+          - name: productphotoid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: productproductphoto
+        columns:
+          - name: productphotoid
+            description: "The primary key for this table"
+            tests:
+                - not_null
+          - name: productid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: productreview
+        columns:
+          - name: productreviewid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: productsubcategory
+        columns:
+          - name: productsubcategoryid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: scrapreason
+        columns:
+          - name: scrapreasonid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: transactionhistory
+        columns:
+          - name: transactionid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: transactionhistoryarchive
+        columns:
+          - name: transactionid
+            description: "The primary key for this table"
+            tests:
+                - not_null
+      - name: unitmeasure
+        columns:
+          - name: unitmeasurecode
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: workorder
+        columns:
+          - name: workorderid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: workorderrouting
+        columns:
+          - name: workorderid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+          - name: productid
+            description: "The primary key for this table"
+            tests:
+                - not_null
+          - name: operationsequence
+            description: "The primary key for this table"
+            tests:
+                - not_null
+      - name: productvendor
+        columns:
+          - name: businessentityid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+          - name: productid
+            description: "The primary key for this table"
+            tests:
+                - not_null
+      - name: purchaseorderdetail
+        columns:
+          - name: purchaseorderdetailid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+          - name: purchaseorderid
+            description: "The primary key for this table"
+            tests:
+                - not_null
+      - name: purchaseorderheader
+        columns:
+          - name: purchaseorderid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: shipmethod
+        columns:
+          - name: shipmethodid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: vendor
+        columns:
+          - name: businessentityid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
