@@ -27,7 +27,6 @@ sources:
           - name: businessentityid
             description: "The primary key for this table"
             tests:
-                - unique
                 - not_null
           - name: startdate
             description: "The primary key for this table"
@@ -48,14 +47,12 @@ sources:
           - name: businessentityid
             description: "The primary key for this table"
             tests:
-                - unique
                 - not_null
       - name: employeepayhistory
         columns:
           - name: businessentityid
             description: "The primary key for this table"
             tests:
-                - unique
                 - not_null
           - name: ratechangedate
             description: "The primary key for this table"
@@ -66,7 +63,6 @@ sources:
           - name: businessentityid
             description: "The primary key for this table"
             tests:
-                - unique
                 - not_null
       - name: address
         columns:
@@ -94,7 +90,6 @@ sources:
           - name: businessentityid
             description: "The primary key for this table"
             tests:
-                - unique
                 - not_null
           - name: addressid
             description: "The primary key for this table"
@@ -111,7 +106,6 @@ sources:
           - name: businessentityid
             description: "The primary key for this table"
             tests:
-                - unique
                 - not_null
           - name: contacttypeid
             description: "The primary key for this table"
@@ -146,28 +140,24 @@ sources:
           - name: businessentityid
             description: "The primary key for this table"
             tests:
-                - unique
                 - not_null
       - name: password
         columns:
           - name: businessentityid
             description: "The primary key for this table"
             tests:
-                - unique
                 - not_null
       - name: person
         columns:
           - name: businessentityid
             description: "The primary key for this table"
             tests:
-                - unique
                 - not_null
       - name: personphone
         columns:
           - name: businessentityid
             description: "The primary key for this table"
             tests:
-                - unique
                 - not_null
           - name: phonenumbertypeid
             description: "The primary key for this table"
@@ -405,7 +395,6 @@ sources:
           - name: businessentityid
             description: "The primary key for this table"
             tests:
-                - unique
                 - not_null
           - name: productid
             description: "The primary key for this table"
@@ -441,5 +430,156 @@ sources:
           - name: businessentityid
             description: "The primary key for this table"
             tests:
+                - not_null
+      - name: countryregioncurrency
+        columns:
+          - name: countryregioncode
+            description: "The primary key for this table"
+            tests:
+                - not_null
+          - name: currencycode
+            description: "The primary key for this table"
+            tests:
+                - not_null
+      - name: creditcard
+        columns:
+          - name: creditcardid
+            description: "The primary key for this table"
+            tests:
                 - unique
+                - not_null
+      - name: currency
+        columns:
+          - name: currencycode
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: currencyrate
+        columns:
+          - name: currencyrateid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: customer
+        columns:
+          - name: customerid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: personcreditcard
+        columns:
+          - name: businessentityid
+            description: "The primary key for this table"
+            tests:
+                - not_null
+          - name: creditcardid
+            description: "The primary key for this table"
+            tests:
+                - not_null
+      - name: salesorderdetail
+        columns:
+          - name: salesorderdetailid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+          - name: salesorderid
+            description: "The primary key for this table"
+            tests:
+                - not_null
+      - name: salesorderheadersalesreason
+        columns:
+          - name: salesorderid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+          - name: salesreasonid
+            description: "The primary key for this table"
+            tests:
+                - not_null
+      - name: salesperson
+        columns:
+          - name: businessentityid
+            description: "The primary key for this table"
+            tests:
+                - not_null
+      - name: salespersonquotahistory
+        columns:
+          - name: businessentityid
+            description: "The primary key for this table"
+            tests:
+                - not_null
+          - name: quotadate
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: salesreason
+        columns:
+          - name: salesreasonid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: salestaxrate
+        columns:
+          - name: salestaxrateid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: salesterritory
+        columns:
+          - name: territoryid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: salesterritoryhistory
+        columns:
+          - name: territoryid
+            description: "The primary key for this table"
+            tests:
+                - not_null
+          - name: startdate
+            description: "The primary key for this table"
+            tests:
+                - not_null
+          - name: businessentityid
+            description: "The primary key for this table"
+            tests:
+                - not_null
+      - name: shoppingcartitem
+        columns:
+          - name: shoppingcartitemid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: specialoffer
+        columns:
+          - name: specialofferid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+      - name: specialofferproduct
+        columns:
+          - name: specialofferid
+            description: "The primary key for this table"
+            tests:
+                - not_null
+          - name: productid
+            description: "The primary key for this table"
+            tests:
+                - not_null
+      - name: store
+        columns:
+          - name: businessentityid
+            description: "The primary key for this table"
+            tests:
                 - not_null
