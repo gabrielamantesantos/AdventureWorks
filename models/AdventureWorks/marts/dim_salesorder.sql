@@ -16,10 +16,6 @@ with person as (
         select *
         from {{ ref('dim_address') }}
     )
-    , preorder as (
-        select *
-        from {{ ref('stg_salesorderheadersalesreason') }}
-    )
     , orders as (
         select *
         from {{ ref('stg_salesorderheader') }}
@@ -31,7 +27,6 @@ with person as (
     , orderfinal as (
         select
             row_number() over (order by orders.salesorderid) as orders_sk  --auto incremental surrogate key
-            , orders.salesorderid as OrderID
             , orders.orderdate as OrderDate
             , extract(year from orders.orderdate) as OrderYear
             , extract(month from orders.orderdate) as OrderMonth
@@ -46,7 +41,13 @@ with person as (
             , addressinfo.city_name as CityName
             , addressinfo.state_name as StateName
             , addressinfo.country_name as CountryName
+            , concat(if(title is null, ' ', person.title), ' ', person.firstname, ' ', person.lastname) as CustomerName
         from orders
-    )
+        left join customer on orders.customerid = customer.customerid
+        left join person on customer.personid = person.businessentityid
+        left join creditcard on orders.creditcardid = creditcard.creditcardid
+        left join addressinfo on orders.shiptoaddressid = addressinfo.addressid
+        left join orderdetails on orders.salesorderid = orderdetails.salesorderid
+)
 
 select * from orderfinal

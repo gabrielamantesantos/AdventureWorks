@@ -490,6 +490,13 @@ sources:
             description: "The primary key for this table"
             tests:
                 - not_null
+      - name: salesorderheader
+        columns:
+          - name: salesorderid
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
       - name: salesorderheadersalesreason
         columns:
           - name: salesorderid
