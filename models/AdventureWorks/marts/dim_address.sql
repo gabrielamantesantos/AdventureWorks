@@ -30,5 +30,3 @@ with country as (
     )
 
 select * from addressinfo
-
-    
