@@ -7,7 +7,7 @@ with
 	        , name
         from {{ ref('stg_salesreason') }}
     )
-    , preorder as (
+    , reason as (
         select salesreason.salesreasonid
         , salesorderheader.salesorderid
         , salesreason.reasontype
@@ -16,4 +16,4 @@ with
         left join salesreason on salesorderheader.salesreasonid = salesreason.salesreasonid
     )
 
-select * from preorder
+select * from reason

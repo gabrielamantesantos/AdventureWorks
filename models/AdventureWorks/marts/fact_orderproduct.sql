@@ -1,7 +1,6 @@
 {{  config(materialized='table')  }}
 
-with
-    dim_orders as (
+with dim_orders as (
         select *
         from {{ ref('dim_salesorder')  }}
     )
@@ -31,10 +30,10 @@ with
         , *
         from orders_with_products
     )
-    , orders_with_net as (
+    , factorderproduct as (
         select GrossIncome-(GrossIncome*Discount) as NetIncome
         , *
         from orders_with_gross
     )
 
-    select OrderID, product_fk, OrderDetailID, OrderQuantity, UnitPrice, GrossIncome, Discount, NetIncome from orders_with_net
+    select OrderID, product_fk, OrderDetailID, OrderQuantity, UnitPrice, GrossIncome, Discount, NetIncome from factorderproduct
