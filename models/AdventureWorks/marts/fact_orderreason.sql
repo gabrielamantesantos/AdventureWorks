@@ -17,9 +17,9 @@ with dim_orders as (
     , reason_with_sk as (
         select orderheadersalesreason.salesorderid as orderid
         , orderheadersalesreason.salesreasonid as reasonid
-        , dim_reason.salesreasonid as reason_fk
+        , dim_reason.reason_sk as reason_fk
         from {{ ref('stg_salesorderheadersalesreason') }} orderheadersalesreason
-        left join dim_reason on dim_reason.salesreasonid = orderheadersalesreason.salesreasonid
+        left join dim_reason on dim_reason.ReasonID = orderheadersalesreason.salesreasonid
     )
     , factorderreason as (
         select reason_with_sk.reason_fk

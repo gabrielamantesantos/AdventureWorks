@@ -8,8 +8,10 @@ with
     , transformed as (
         select
             row_number() over (order by productid) as product_sk  --auto incremental surrogate key
-            , *
+            , productid as ProductID
+            , name as ProductName
+            , productnumber as SeriesNumber
         from staging
     )
 
-select * from transformed
+select product_sk, ProductID, ProductName, SeriesNumber from transformed
