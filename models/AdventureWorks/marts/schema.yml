@@ -1,0 +1,96 @@
+version: 2
+
+models:
+    - name: fact_orderproduct
+      description: Tabela Fato relacionada com as dimensões de Pedido e Produto.
+      columns:
+          - name: orders_fk
+            description: "Foreign Key - dim_salesorders to fact_orderproduct"
+            tests:
+              - relationships:
+                  to: ref('dim_salesorders')
+                  field: orders_sk
+          - name: product_fk
+            description: "Foreign Key - dim_products to fact_orderproduct."
+            tests:
+              - relationships:
+                  to: ref('dim_products')
+                  field: product_sk
+          - name: unitprice
+            description: "Preço unitário do produto"
+          - name: OrderQuantity
+            description: "Número de unidades contidas no pedido"
+          - name: GrossIncome
+            description: "Receita Bruta do pedido"
+          - name: Discount
+            description: "Desconto para aplicar em cima da Receita Bruta"
+          - name: NetIncome
+            description: "Receita Líquida do pedido, levando em conta os descontos"
+    - name: fact_orderreason
+      description: Tabela Fato relacionada com as dimensões de Pedido e Motivo.
+      columns:
+          - name: orders_fk
+            description: "Foreign Key - dim_salesorder to fact_orderreason"
+            tests:
+              - relationships:
+                  to: ref('dim_salesorder')
+                  field: orders_sk
+              - not_null
+          - name: reason_fk
+            description: "Foreign Key - dim_salesreason to fact_orderreason"
+            tests:
+              - relationships:
+                  to: ref('dim_salesreason')
+                  field: ReasonID
+    - name: dim_salesorder
+      description: Tabela de dimensão contendo informações de localização, clientes, cartão de crédito, pessoa, detalhes do pedido e cabeçalho.
+      columns:
+          - name: orders_sk
+            description: "Surrogate Key"
+            tests:
+              - not_null
+          - name: OrderID
+            description: "Número de identificação do pedido"
+            tests:
+              - not_null
+          - name: Status
+            description: "Status do pedido"
+          - name: OrderDate
+            description: "Data do pedido"
+          - name: CityName
+            description: "Nome da Cidade"
+          - name: StateName
+            description: "Nome do Estado"
+          - name: CountryName
+            description: "Nome do País"
+          - name: CustomerName
+            description: "Nome do cliente"
+          - name: cidade
+    - name: dim_products
+      description: Tabela de dimensão contendo informações de número de série, nível de estoque, modelos, medidas e cores.
+      columns:
+          - name: product_sk
+            description: "Surrogate Key"
+            tests:
+              - not_null
+          - name: ProductID
+            description: "ID do produto"
+            tests:
+              - not_null
+          - name: ProductName
+            description: "Nome do produto"
+          - name: SeriesNumber
+            description: "Número de série do produto"
+    - name: dim_salesreason
+      description: Tabela de dimensão contendo informações sobre o motivo das vendas.
+      columns:
+          - name: OrderID
+            description: "Identificação do pedido"
+          - name: ReasonID
+            description: "Identificação do motivo da venda"
+            tests:
+              - not_null
+          - name: Reason
+            description: "Motivo da venda"
+          - name: ReasonType
+            description: "Tipo de motivo"

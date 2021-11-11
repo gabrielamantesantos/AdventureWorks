@@ -27,6 +27,7 @@ with person as (
     , orderfinal as (
         select
             row_number() over (order by orders.salesorderid) as orders_sk  --auto incremental surrogate key
+            , orders.salesorderid as OrderID
             , orders.orderdate as OrderDate
             , extract(year from orders.orderdate) as OrderYear
             , extract(month from orders.orderdate) as OrderMonth
