@@ -15,7 +15,7 @@ models:
             tests:
               - relationships:
                   to: ref('dim_products')
-                  field: product_sk
+                  field: ProductID
           - name: unitprice
             description: "Preço unitário do produto"
           - name: OrderQuantity

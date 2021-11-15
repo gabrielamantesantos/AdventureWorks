@@ -15,3 +15,4 @@ with
     )
 
 select product_sk, ProductID, ProductName, SeriesNumber from transformed
+LIMIT 505

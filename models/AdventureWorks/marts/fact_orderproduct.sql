@@ -25,16 +25,12 @@ with dim_orders as (
         from {{ ref('stg_salesorderdetail') }} orderdetail
         left join dim_products on dim_products.ProductID = orderdetail.productid
     )
-    , orders_with_gross as (
+    , factorderproduct as (
         select OrderQuantity*UnitPrice as GrossIncome
         , *
         from orders_with_products
     )
-    , factorderproduct as (
-        select GrossIncome-(GrossIncome*Discount) as NetIncome
-        , *
-        from orders_with_gross
-    )
 
-    select OrderID, product_fk, OrderDetailID, OrderQuantity, UnitPrice, GrossIncome, Discount, NetIncome
+    select OrderID, product_fk, OrderDetailID, OrderQuantity, UnitPrice, GrossIncome, Discount
     from factorderproduct
+    LIMIT 10000
