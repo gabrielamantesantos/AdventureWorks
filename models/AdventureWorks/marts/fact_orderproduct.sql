@@ -23,7 +23,7 @@ with dim_orders as (
             , orderdetail.unitprice as UnitPrice
             , orderdetail.unitpricediscount as Discount
         from {{ ref('stg_salesorderdetail') }} orderdetail
-        left join dim_products on dim_products.product_sk = orderdetail.productid
+        left join dim_products on dim_products.ProductID = orderdetail.productid
     )
     , orders_with_gross as (
         select OrderQuantity*UnitPrice as GrossIncome
@@ -36,4 +36,5 @@ with dim_orders as (
         from orders_with_gross
     )
 
-    select OrderID, product_fk, OrderDetailID, OrderQuantity, UnitPrice, GrossIncome, Discount, NetIncome from factorderproduct
+    select OrderID, product_fk, OrderDetailID, OrderQuantity, UnitPrice, GrossIncome, Discount, NetIncome
+    from factorderproduct
