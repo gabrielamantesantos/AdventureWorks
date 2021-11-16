@@ -7,12 +7,11 @@ with
     )
     , transformed as (
         select
-            row_number() over (order by productid) as product_sk  --auto incremental surrogate key
-            , productid as ProductID
+            row_number() over (order by productid) as product_pk  --auto incremental surrogate key
             , name as ProductName
             , productnumber as SeriesNumber
         from staging
     )
 
-select product_sk, ProductID, ProductName, SeriesNumber from transformed
+select product_pk, ProductName, SeriesNumber from transformed
 LIMIT 505

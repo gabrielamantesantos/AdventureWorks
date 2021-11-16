@@ -1,20 +1,31 @@
 {{  config(materialized='table')  }}
 
 with
-    salesreason as (
+    reason as (
         select reasontype
             , salesreasonid
 	        , name
         from {{ ref('stg_salesreason') }}
     )
-    , reason as (
-        select row_number() over (order by salesorderheader.salesreasonid) as reason_sk  --auto incremental surrogate key 
-        , salesreason.salesreasonid as ReasonID
-        , salesorderheader.salesorderid as OrderID
-        , salesreason.reasontype as ReasonType
-        , salesreason.name as Reason
-        from {{ ref('stg_salesorderheadersalesreason') }} salesorderheader
-        left join salesreason on salesorderheader.salesreasonid = salesreason.salesreasonid
+    , reasoninfo as (
+        select salesorderid
+            , salesreasonid
+	    from {{ ref('stg_salesorderheadersalesreason') }}
+    )
+    , reasonalmostfinal as (
+        select reasoninfo.salesorderid
+        , reasoninfo.salesreasonid
+        , reason.reasontype
+        , reason.name as reasonname
+        from reasoninfo
+        left join reason on reason.salesreasonid = reasoninfo.salesreasonid
+        where reasoninfo.salesorderid is not null
+    )
+    , reasonfinal as (
+        select salesorderid
+        , string_agg(reasonname, ', ') as Reasons
+        from reasonalmostfinal
+        group by salesorderid
     )
 
-select * from reason
+select * from reasonfinal
