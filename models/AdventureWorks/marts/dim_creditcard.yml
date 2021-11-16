@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: dim_creditcard
+    columns:
+      - name: creditcard_pk
+        description: primary key of dim_creditcard
+        tests:
+          - unique
+          - not_null
+
+      - name: cardtype
+        description: type of card per order
