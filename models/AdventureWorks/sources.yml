@@ -3,30 +3,8 @@ version: 2
 sources:
   - name: adventure_works
     tables:
-      - name: department
-      - name: shift
-      - name: employeedepartmenthistory
-      - name: jobcandidate
-      - name: employeepayhistory
-      - name: employee
       - name: address
-      - name: addresstype
-      - name: businessentity
-        columns:
-          - name: businessentityid
-            description: "The primary key for this table"
-            tests:
-                - unique
-                - not_null
-      - name: businessentityaddress
-      - name: businessentitycontact
-      - name: contacttype
       - name: countryregion
-      - name: emailaddress
-      - name: password
-      - name: person
-      - name: personphone
-      - name: phonenumbertype
       - name: stateprovince
         columns:
           - name: stateprovinceid
@@ -34,11 +12,6 @@ sources:
             tests:
                 - unique
                 - not_null
-      - name: billofmaterials
-      - name: culture
-      - name: document
-      - name: illustration
-      - name: location
       - name: product
         columns:
           - name: productid
@@ -46,31 +19,7 @@ sources:
             tests:
                 - unique
                 - not_null
-      - name: productcategory
-      - name: productcosthistory
-      - name: productdescription
-      - name: productdocument
-      - name: productinventory
-      - name: productlistpricehistory
-      - name: productmodel
-      - name: productmodelillustration
-      - name: productmodelproductdescriptionculture
-      - name: productphoto
-      - name: productproductphoto
-      - name: productreview
-      - name: productsubcategory
-      - name: scrapreason
-      - name: transactionhistory
-      - name: transactionhistoryarchive
-      - name: unitmeasure
-      - name: workorder
-      - name: workorderrouting
-      - name: productvendor
-      - name: purchaseorderdetail
-      - name: purchaseorderheader
-      - name: shipmethod
-      - name: vendor
-      - name: countryregioncurrency
+      - name: person
       - name: creditcard
         columns:
           - name: creditcardid
@@ -78,8 +27,6 @@ sources:
             tests:
                 - unique
                 - not_null
-      - name: currency
-      - name: currencyrate
       - name: customer
         columns:
           - name: customerid
@@ -87,7 +34,6 @@ sources:
             tests:
                 - unique
                 - not_null
-      - name: personcreditcard
       - name: salesorderdetail
         columns:
           - name: salesorderdetailid
@@ -116,13 +62,6 @@ sources:
             description: "The primary key for this table"
             tests:
                 - not_null
-      - name: salesperson
-        columns:
-          - name: businessentityid
-            description: "The primary key for this table"
-            tests:
-                - not_null
-      - name: salespersonquotahistory
       - name: salesreason
         columns:
           - name: salesreasonid
@@ -130,10 +69,4 @@ sources:
             tests:
                 - unique
                 - not_null
-      - name: salestaxrate
-      - name: salesterritory
-      - name: salesterritoryhistory
-      - name: shoppingcartitem
-      - name: specialoffer
-      - name: specialofferproduct
       - name: store

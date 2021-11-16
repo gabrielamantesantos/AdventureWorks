@@ -1,7 +1,7 @@
 version: 2
 
 models:
-    - name: fact_orderproduct
+    - name: fact_orders
       description: Tabela Fato relacionada com as dimensões de Pedido e Produto.
       columns:
           - name: orders_fk
@@ -10,6 +10,8 @@ models:
               - relationships:
                   to: ref('dim_salesorders')
                   field: orders_sk
+              - unique
+              - not null
           - name: product_fk
             description: "Foreign Key - dim_products to fact_orderproduct."
             tests:
@@ -26,57 +28,14 @@ models:
             description: "Desconto para aplicar em cima da Receita Bruta"
           - name: NetIncome
             description: "Receita Líquida do pedido, levando em conta os descontos"
-    - name: fact_orderreason
-      description: Tabela Fato relacionada com as dimensões de Pedido e Motivo.
-      columns:
-          - name: orders_fk
-            description: "Foreign Key - dim_salesorder to fact_orderreason"
-            tests:
-              - relationships:
-                  to: ref('dim_salesorder')
-                  field: orders_sk
-              - not_null
-          - name: reason_fk
-            description: "Foreign Key - dim_salesreason to fact_orderreason"
-            tests:
-              - relationships:
-                  to: ref('dim_salesreason')
-                  field: ReasonID
-    - name: dim_salesorder
-      description: Tabela de dimensão contendo informações de localização, clientes, cartão de crédito, pessoa, detalhes do pedido e cabeçalho.
-      columns:
-          - name: orders_sk
-            description: "Surrogate Key"
-            tests:
-              - not_null
-          - name: OrderID
-            description: "Número de identificação do pedido"
-            tests:
-              - not_null
-          - name: Status
-            description: "Status do pedido"
-          - name: OrderDate
-            description: "Data do pedido"
-          - name: CityName
-            description: "Nome da Cidade"
-          - name: StateName
-            description: "Nome do Estado"
-          - name: CountryName
-            description: "Nome do País"
-          - name: CustomerName
-            description: "Nome do cliente"
-          - name: cidade
     - name: dim_products
       description: Tabela de dimensão contendo informações de número de série, nível de estoque, modelos, medidas e cores.
       columns:
-          - name: product_sk
-            description: "Surrogate Key"
+          - name: product_pk
+            description: "Primary Key da tabela products"
             tests:
               - not_null
-          - name: ProductID
-            description: "ID do produto"
-            tests:
-              - not_null
+              - unique
           - name: ProductName
             description: "Nome do produto"
           - name: SeriesNumber
@@ -84,13 +43,57 @@ models:
     - name: dim_salesreason
       description: Tabela de dimensão contendo informações sobre o motivo das vendas.
       columns:
-          - name: OrderID
-            description: "Identificação do pedido"
-          - name: ReasonID
+          - name: salesreason_pk
+            description: "Primary Key da tabela Motivo"
+            tests:
+              - unique
+              - not null
+          - name: salesreasonid
             description: "Identificação do motivo da venda"
             tests:
               - not_null
-          - name: Reason
+          - name: reasonname
             description: "Motivo da venda"
-          - name: ReasonType
+          - name: reasontype
             description: "Tipo de motivo"
+    - name: dim_address
+      description: Tabela de dimensão contendo informações sobre a localização.
+      columns:
+          - name: address_pk
+            description: "Primary Key do endereço"
+            tests:
+              - unique
+              - not null
+          - name: CityName
+            description: "Nome da cidade"
+          - name: StateName
+            description: "Nome do estado"
+          - name: CountryName
+            description: "Nome do país"
+          - name: addressline1
+            description: "Endereço completo"
+          - name: postalcode
+            description: "Código de localização CEP"
+    - name: dim_creditcard
+      description: Tabela de dimensão contendo informações sobre os cartões de crédito.
+      columns:
+          - name: creditcard_pk
+            description: "Primary Key da tabela creditcard"
+            tests:
+              - unique
+              - not null
+          - name: cardtype
+            description: "Tipos de cartões"
+    - name: dim_customer
+      description: Tabela de dimensão contendo informações sobre os clientes.
+      columns:
+          - name: customer_pk
+            description: "Primary Key da tabela customer"
+            tests:
+              - unique
+              - not null
+          - name: businessentityid
+          - name: storeid
+            description: "Identificação da Loja cliente"
+          - name: CustomerName
+            description: "Identificação do Cliente Final"
