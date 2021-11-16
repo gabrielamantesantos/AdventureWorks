@@ -34,4 +34,4 @@ with
         left join storeinfo on customerinfo.storeid = storeinfo.storeid
     )
 
-select * from customerfinal
+select customer_pk, storeid, CustomerName from customerfinal

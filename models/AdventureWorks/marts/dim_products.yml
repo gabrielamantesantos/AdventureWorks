@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: dim_products
+    columns:
+      - name: product_pk
+        description: primary key of dim_products
+        tests:
+          - unique
+          - not_null
+
+      - name: ProductName
+        description: name of the product
+
+      - name: SeriesNumber
+        description: Series Number of the product

@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: fact_orders
+    columns:
+      - name: reason_fk
+        description: reason's natural key.
+        tests:
+          - relationships:
+              to: ref('dim_salesreason')
+              field: salesorderid
+
+      - name: customer_fk
+        description: customer's foreign key.
+        tests:
+          - relationships:
+              to: ref('dim_customer')
+              field: customer_pk
+
+      - name: product_fk
+        description: product's foreign key.
+        tests:
+          - relationships:
+             to: ref('dim_products')
+             field: product_pk

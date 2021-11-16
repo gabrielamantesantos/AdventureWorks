@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: dim_customer
+    columns:
+      - name: customer_pk
+        description: primary key of dim_customer
+        tests:
+          - unique
+          - not_null
+
+      - name: businessentityid
+        description: identification
+
+      - name: storeid
+        description: identificationof the store
+
+      - name: CustomerName
+        description: name of the costumer

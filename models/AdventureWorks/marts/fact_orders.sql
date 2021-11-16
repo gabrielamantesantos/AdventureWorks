@@ -70,6 +70,7 @@ with addressinfo as (
         , addressinfo.CityName
         , addressinfo.StateName
         , addressinfo.CountryName
+        , creditcard.creditcard_pk as creditcard_fk
         , creditcard.cardtype as CardType
     from orders_with_sk
     left join detail_with_sk on orders_with_sk.salesorderid = detail_with_sk.salesorderid
@@ -82,6 +83,7 @@ with addressinfo as (
     from factorders
 )
 
-select customer_fk, CustomerName, salesorderid, orderdate, OrderYear, OrderMonth, Status, product_fk, address_fk, ProductName, orderqty, unitprice, GrossIncome, unitpricediscount
-
+select customer_fk, salesorderid as reason_fk, salesorderdetailid, product_fk, address_fk, creditcard_fk
+, orderdate, OrderYear, OrderMonth, Status, orderqty, unitprice, GrossIncome, unitpricediscount
 from factgross
+order by salesorderdetailid
